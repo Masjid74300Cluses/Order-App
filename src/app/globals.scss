@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply font-display
+    min-h-screen
+    flex
+    flex-col
+    px-4
+    h-full
+
+  sm:px-8
+  md:px-16
+  lg:px-32
+  xl:px-40;
+
+  background-color: #e8f0ec;
+}

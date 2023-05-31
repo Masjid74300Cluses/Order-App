@@ -1,0 +1,21 @@
+.product-card {
+  @apply flex
+    flex-col
+    items-center
+    relative
+    w-full
+    p-5
+    rounded-lg
+    border-2
+    border-gray-300
+    text-2xl
+    bg-amber-50;
+}
+
+.title {
+  @apply font-heading
+    text-center
+    text-gray-800
+    font-extrabold
+    capitalize;
+}

@@ -1,0 +1,27 @@
+.button {
+  @apply inline-flex
+    items-center
+    justify-center
+    px-5
+    py-3
+    text-sm
+    rounded-full
+    font-extrabold
+    transition
+
+    border-2
+    border-green-600
+    bg-green-600
+    text-white
+
+    hover:bg-green-400
+    hover:border-green-400
+
+    disabled:bg-gray-100
+    disabled:text-gray-400
+    disabled:border-gray-100
+
+    focus-visible:outline
+    focus-visible:outline-4
+    focus-visible:outline-green-400;
+}
