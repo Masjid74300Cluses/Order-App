@@ -54,8 +54,4 @@ Les contributions à ce projet sont les bienvenues. Si vous souhaitez contribuer
 7. Poussez vos modifications en utilisant la commande `git push origin <branch-name>`.
 
 8. Créez une Pull Request en utilisant l'interface GitHub.
-# Order-App
-# Order-App
-# Order-App
-# Order-App
-# Order-App
+
