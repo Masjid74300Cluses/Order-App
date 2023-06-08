@@ -14,9 +14,12 @@ export const useCart = () => {
 };
 
 export const CartProvider = ({ children }) => {
-  const storedCart = JSON.parse(localStorage.getItem("order-app-cart"));
+  const storedCart =
+    typeof window !== "undefined"
+      ? JSON.parse(localStorage?.getItem("order-app-cart"))
+      : [];
 
-  const [cart, setCart] = useState(storedCart || []);
+  const [cart, setCart] = useState(storedCart);
 
   useEffect(() => {
     // Save the cart to localStorage whenever it changes
