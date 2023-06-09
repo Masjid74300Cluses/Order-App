@@ -22,7 +22,7 @@ const ProductCard = ({ product, onAdd, link }) => {
         <h2>{product.name}</h2>
       </div>
       <div className={styles.price}>
-        <p>{product.price} €</p>
+        <p>{product.price / 100} €</p>
       </div>
 
       <div>

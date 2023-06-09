@@ -41,7 +41,7 @@ export const CartProvider = ({ children }) => {
   };
 
   const getTotalPrice = () => {
-    return cart.reduce((acc, item) => acc + item.price, 0);
+    return cart?.reduce((acc, item) => acc + item.price, 0) || 0;
   };
 
   return (
