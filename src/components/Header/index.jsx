@@ -1,6 +1,7 @@
 "use client";
-import { useCart } from "@/providers/CartProvider";
+
 import styles from "./Header.module.scss";
+import { useCart } from "@/providers/CartProvider";
 
 const Header = () => {
   const classes = {
@@ -14,7 +15,7 @@ const Header = () => {
   return (
     <div className={classes.header}>
       <div className={classes.headerContent}>
-        <h1 className={classes.title}>Kermesse de Deradji</h1>
+        <h1 className={classes.title}>Kermesse de la fête de l'Aid</h1>
         <div>
           Panier
           <div>
