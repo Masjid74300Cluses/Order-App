@@ -1,9 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&family=Poppins:wght@500&display=swap");
+
+$primary-font: "Poppins", sans-serif;
+$second-font: "Open Sans", sans-serif;
 .products-list {
   @apply grid
     grid-cols-1
     gap-4
-
     sm:grid-cols-2
     md:grid-cols-3
     lg:grid-cols-4;
+  font-family: $second-font;
+}
+.table {
+  font-family: $primary-font;
+  font-size: 2rem;
 }

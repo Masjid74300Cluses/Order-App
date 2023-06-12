@@ -1,7 +1,8 @@
 "use client";
+
 import ProductCard from "../ProductCard";
-import { useCart } from "@/providers/CartProvider";
 import styles from "./ProductsList.module.scss";
+import { useCart } from "@/providers/CartProvider";
 
 const ProductsList = ({ products = [], sauces = [], tableId }) => {
   const { addItem } = useCart();
@@ -11,8 +12,8 @@ const ProductsList = ({ products = [], sauces = [], tableId }) => {
   };
 
   return (
-    <div>
-      <h1>Table {tableId}</h1>
+    <main>
+      <h1 className={styles.table}>Table {tableId}</h1>
 
       <ul className={styles["products-list"]}>
         {products?.map((product) => (
@@ -25,7 +26,7 @@ const ProductsList = ({ products = [], sauces = [], tableId }) => {
           </li>
         ))}
       </ul>
-    </div>
+    </main>
   );
 };
 

@@ -1,7 +1,8 @@
 "use client";
+
+import Button from "../Button";
 import Image from "next/image";
 import Link from "next/link";
-import Button from "../Button";
 import styles from "./ProductCard.module.scss";
 
 const ProductCard = ({ product, onAdd, link }) => {
@@ -18,11 +19,14 @@ const ProductCard = ({ product, onAdd, link }) => {
         height={200}
         className={styles.image}
       />
-      <div className={styles.title}>
-        <h2>{product.name}</h2>
-      </div>
-      <div className={styles.price}>
-        <p>{product.price / 100} €</p>
+      <div className={styles.description}>
+
+        <div className={styles.title}>
+          <h2>{product.name}</h2>
+        </div>
+        <div className={styles.price}>
+          <p>{product.price / 100} €</p>
+        </div>
       </div>
 
       <div>
