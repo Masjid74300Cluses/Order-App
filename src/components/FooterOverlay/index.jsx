@@ -1,7 +1,8 @@
 "use client";
-import { useState } from "react";
+
 import cn from "classnames";
 import styles from "./FooterOverlay.module.scss";
+import { useState } from "react";
 
 const FooterOverlay = ({ expanded }) => {
   const [internExpanded, setInternExpanded] = useState(expanded);
@@ -10,11 +11,19 @@ const FooterOverlay = ({ expanded }) => {
     footerOverlay: cn(styles["footer-overlay"], {
       [styles["expanded"]]: internExpanded,
     }),
+    btns: cn(styles["btns"], {
+      [styles["expanded"]]: internExpanded,
+    })
   };
 
   return (
     <div className={classes.footerOverlay}>
-      <button onClick={() => setInternExpanded(!internExpanded)}>change</button>
+      <div className={classes.btns}>
+        <button onClick={() => setInternExpanded(!internExpanded)}>change</button>
+        <button onClick={() => setInternExpanded(!internExpanded)}>change</button>
+        <button onClick={() => setInternExpanded(!internExpanded)}>change</button>
+        <button onClick={() => setInternExpanded(!internExpanded)}>change</button>
+      </div>
     </div>
   );
 };

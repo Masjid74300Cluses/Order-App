@@ -1,8 +1,12 @@
 .footer-overlay {
-//   @apply fixed
-//     left-0
-//     bottom-0
-//     h-16
-//     w-full
-  @apply bg-white;
+  @apply fixed
+    left-0
+    bottom-0
+    h-16
+    w-full
+   bg-white;
+}
+.btns {
+  display: flex;
+  justify-content: space-evenly;
 }
