@@ -13,7 +13,7 @@ const ProductCard = ({ product, onAdd, link }) => {
 
   return (
     <div className={styles["product-card"]}>
-      <Image
+      <Image id="product"
         src={`/images/${product.name}.png`}
         alt="Picture of the product"
         width={200}
