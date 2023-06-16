@@ -1,5 +1,5 @@
-import { getProducts } from "@/utils/products";
 import ProductsList from "@/components/ProductsList";
+import { getProducts } from "@/utils/products";
 
 const getData = async () => {
   const products = await getProducts();
@@ -8,12 +8,11 @@ const getData = async () => {
 };
 
 const Page = async ({ params }) => {
-  const { products, sauces } = await getData();
+  const { products } = await getData();
 
   return (
     <ProductsList
       products={products}
-      sauces={sauces}
       tableId={params.tableId}
     />
   );

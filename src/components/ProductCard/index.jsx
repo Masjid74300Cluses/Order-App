@@ -6,6 +6,7 @@ import Link from "next/link";
 import styles from "./ProductCard.module.scss";
 
 const ProductCard = ({ product, onAdd, link }) => {
+
   const handleOnClick = () => {
     onAdd();
   };
@@ -13,7 +14,7 @@ const ProductCard = ({ product, onAdd, link }) => {
   return (
     <div className={styles["product-card"]}>
       <Image
-        src="/images/merguez.png"
+        src={`/images/${product.name}.png`}
         alt="Picture of the product"
         width={200}
         height={200}

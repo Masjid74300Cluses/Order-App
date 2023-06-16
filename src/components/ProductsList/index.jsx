@@ -4,7 +4,7 @@ import ProductCard from "../ProductCard";
 import styles from "./ProductsList.module.scss";
 import { useCart } from "@/providers/CartProvider";
 
-const ProductsList = ({ products = [], sauces = [], tableId }) => {
+const ProductsList = ({ products = [], tableId }) => {
   const { addItem } = useCart();
 
   const handleOnAdd = (product) => () => {
