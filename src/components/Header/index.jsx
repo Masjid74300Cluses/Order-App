@@ -3,7 +3,7 @@
 import styles from "./Header.module.scss";
 import { useCart } from "@/providers/CartProvider";
 
-const Header = () => {
+function Header() {
   const classes = {
     header: styles.header,
     headerContent: styles["header__content"],
@@ -13,18 +13,18 @@ const Header = () => {
   const { cart, getTotalPrice } = useCart();
 
   return (
-    <div className={classes.header}>
+    <main className={classes.header}>
       <div className={classes.headerContent}>
-        <h1 className={classes.title}>Kermesse de la fête de l'Aid</h1>
+        <h1 className={classes.title}>Kermesse de la fête de l\'Aid</h1>
         <div>
           Panier
-          <div>
-            <div> {cart?.length} articles</div>
-            <div>{getTotalPrice()} euros</div>
-          </div>
+          <ul>
+            <li> {cart?.length} articles</li>
+            <li>{getTotalPrice()} euros</li>
+          </ul>
         </div>
       </div>
-    </div>
+    </main>
   );
 };
 
