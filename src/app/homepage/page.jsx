@@ -1,5 +1,6 @@
 import './home.scss'
 
+import PreviewPage from '../stripe'
 import React from 'react'
 
 export default function Home() {
@@ -14,7 +15,7 @@ export default function Home() {
 
 
             <a id='link' href="about_us">About Us</a>
-
+            <PreviewPage />
 
         </main>
     )
