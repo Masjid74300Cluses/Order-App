@@ -62,12 +62,10 @@ const ProductSheet = ({ product, sauces }) => {
     <div className={styles["product-sheet"]}>
       <Image src={`/images/${product.name}.png`} alt="Picture of the product" width={200}
         height={200} />
-      <article className={styles.description}>
+      <article className={styles.details}>
 
         <h1 className={styles["product-title"]}>{product?.name}</h1>
         <p>{product?.price} €</p>
-        <p>{product?.description}</p>
-
       </article>
 
       {sauces?.map((sauce) => (
@@ -98,6 +96,7 @@ const ProductSheet = ({ product, sauces }) => {
         />
         <label htmlFor="withoutSauce">Sans sauce</label>
       </div>
+      <p className={styles.description}>{product?.description}</p>
 
       <Button onClick={handleOnClick} disabled={disabled}>
         Ajouter au panier

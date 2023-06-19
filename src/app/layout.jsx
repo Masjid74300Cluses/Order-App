@@ -18,9 +18,9 @@ export default function RootLayout({ children }) {
         <CartProvider>
           <Header />
           <div className="container">{children}</div>
+          <FooterOverlay />
         </CartProvider>
       </body>
-      <FooterOverlay />
     </html>
   );
 }

@@ -17,20 +17,25 @@ $second-font: "Open Sans", sans-serif;
     hover:border-black
     text-2xl
     bg-amber-50;
+  box-sizing: border-box;
 }
 
-.description {
+.details {
   @apply flex
     flex-col
     items-center
     justify-evenly
-    bg-white
     py-5
     w-full;
-  height: 20vh;
+  height: 10vh;
   .product-title {
     font-family: $primary-font;
     font-size: 2rem;
     text-transform: capitalize;
   }
+}
+.description {
+  font-size: 0.9rem;
+  text-align: justify;
+  font-family: $second-font;
 }
