@@ -2,6 +2,7 @@
 
 import cn from "classnames";
 import styles from "./FooterOverlay.module.scss";
+import { useCart } from "@/providers/CartProvider";
 import { useState } from "react";
 
 const FooterOverlay = ({ expanded }) => {
@@ -11,18 +12,22 @@ const FooterOverlay = ({ expanded }) => {
     footerOverlay: cn(styles["footer-overlay"], {
       [styles["expanded"]]: internExpanded,
     }),
-    btns: cn(styles["btns"], {
+    panier: cn(styles["panier"], {
       [styles["expanded"]]: internExpanded,
     })
   };
+  const { cart, getTotalPrice } = useCart();
 
   return (
     <div className={classes.footerOverlay}>
-      <div className={classes.btns}>
-        <button onClick={() => setInternExpanded(!internExpanded)}>change</button>
-        <button onClick={() => setInternExpanded(!internExpanded)}>change</button>
-        <button onClick={() => setInternExpanded(!internExpanded)}>change</button>
-        <button onClick={() => setInternExpanded(!internExpanded)}>change</button>
+      <div className={classes.panier}>
+        <div>
+          Panier
+          <ul>
+            <li> {cart?.length} articles</li>
+            <li>{getTotalPrice()} euros</li>
+          </ul>
+        </div>
       </div>
     </div>
   );

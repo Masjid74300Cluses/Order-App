@@ -16,13 +16,6 @@ function Header() {
     <main className={classes.header}>
       <div className={classes.headerContent}>
         <h1 className={classes.title}>Kermesse de la fête de l Aid</h1>
-        <div>
-          Panier
-          <ul>
-            <li> {cart?.length} articles</li>
-            <li>{getTotalPrice()} euros</li>
-          </ul>
-        </div>
       </div>
     </main>
   );

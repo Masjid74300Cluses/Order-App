@@ -22,7 +22,9 @@ const ProductPage = async ({ params: { tableId, productId } }) => {
       <Link href="/tables/[tableId]" as={`/tables/${tableId}`}>
         <Button>⬅️ Table {tableId} - Retour produits</Button>
       </Link>
-      <ProductSheet product={product} />
+      <div className="details flex w-full justify-center" >
+        <ProductSheet product={product} />
+      </div>
     </div>
   );
 };
