@@ -1,8 +1,12 @@
 "use client";
+
 import { useEffect, useState } from "react";
-import { useCart } from "@/providers/CartProvider";
+
 import Button from "../Button";
+import Image from "next/image";
 import { PRODUCT_SHEET } from "./constants";
+import styles from "./productSheet.module.scss"
+import { useCart } from "@/providers/CartProvider";
 
 const ProductSheet = ({ product, sauces }) => {
   const { addItem } = useCart();
@@ -54,11 +58,18 @@ const ProductSheet = ({ product, sauces }) => {
   };
 
   return (
-    <div>
-      <h1>Product {product?.id}</h1>
-      <p>{product?.name}</p>
-      <p>{product?.price} €</p>
-      <p>{product?.description}</p>
+
+    <div className={styles["product-sheet"]}>
+      <Image src={`/images/${product.name}.png`} alt="Picture of the product" width={200}
+        height={200} />
+      <article className={styles.description}>
+
+        <h1 className={styles["product-title"]}>{product?.name}</h1>
+        <p>{product?.price} €</p>
+        <p>{product?.description}</p>
+
+      </article>
+
       {sauces?.map((sauce) => (
         <div key={sauce.id}>
           <input
