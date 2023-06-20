@@ -65,7 +65,7 @@ const ProductSheet = ({ product, sauces }) => {
       <article className={styles.details}>
 
         <h1 className={styles["product-title"]}>{product?.name}</h1>
-        <p>{product?.price} €</p>
+        <p>{product?.price / 100} €</p>
       </article>
 
       {sauces?.map((sauce) => (

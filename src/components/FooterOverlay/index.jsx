@@ -22,7 +22,7 @@ const FooterOverlay = ({ expanded }) => {
     <div className={classes.footerOverlay}>
       <div className={classes.panier}>
         <div>
-          Panier
+          <p>Panier</p>
           <ul>
             <li> {cart?.length} articles</li>
             <li>{getTotalPrice()} euros</li>

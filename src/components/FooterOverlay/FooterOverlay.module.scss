@@ -6,6 +6,12 @@
     h-20
     w-24
    bg-green-400;
+  transition: all linear 0.3s;
+  &:hover {
+    background-color: #ffffffb2;
+    border: 1px solid black;
+    box-sizing: border-box;
+  }
 }
 .panier {
   @apply flex

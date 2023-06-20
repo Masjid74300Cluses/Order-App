@@ -3,7 +3,7 @@ import { db } from "@vercel/postgres";
 export const getProducts = async () => {
   const client = await db.connect();
 
-  const { rows: productsRows } = await client.sql`SELECT * FROM products WHERE available = TRUE`;
+  const { rows: productsRows } = await client.sql`SELECT * FROM products WHERE available = TRUE ORDER BY type DESC`;
   client.release();
 
   const products = productsRows.map((row) => {
