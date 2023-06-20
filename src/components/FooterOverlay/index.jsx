@@ -1,11 +1,13 @@
 "use client";
 
+import Button from "../Button";
+import Link from "next/link";
 import cn from "classnames";
 import styles from "./FooterOverlay.module.scss";
 import { useCart } from "@/providers/CartProvider";
 import { useState } from "react";
 
-const FooterOverlay = ({ expanded }) => {
+const FooterOverlay = ({ expanded, tableId }) => {
   const [internExpanded, setInternExpanded] = useState(expanded);
 
   const classes = {
@@ -27,6 +29,7 @@ const FooterOverlay = ({ expanded }) => {
             <li> {cart?.length} articles</li>
             <li>{getTotalPrice()} euros</li>
           </ul>
+
         </div>
       </div>
     </div>

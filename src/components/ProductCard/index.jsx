@@ -11,6 +11,12 @@ const ProductCard = ({ product, onAdd, link }) => {
     onAdd();
   };
 
+  console.log(product);
+
+  if (product.type === "z-sauce") {
+    return product?.title
+  }
+
   return (
     <div className={styles["product-card"]}>
       <Image id="product"
