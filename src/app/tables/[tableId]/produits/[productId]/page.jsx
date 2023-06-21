@@ -1,5 +1,6 @@
 // import { getSauces } from "@/utils/sauces";
 import Button from "@/components/Button";
+import FooterOverlay from "@/components/FooterOverlay";
 import Link from "next/link";
 import ProductSheet from "@/components/ProductSheet";
 import { getProductById } from "@/utils/products";
@@ -25,6 +26,7 @@ const ProductPage = async ({ params: { tableId, productId } }) => {
       <div className="details flex w-full justify-center" >
         <ProductSheet product={product} />
       </div>
+      <FooterOverlay tableId={tableId} />
     </div>
   );
 };
