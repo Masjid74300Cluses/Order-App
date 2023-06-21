@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&family=Poppins:wght@500&display=swap");
+
+$primary-font: "Poppins", sans-serif;
+$second-font: "Open Sans", sans-serif;
+.container-cart {
+  height: 100vh;
+  width: 100%;
+  .btns {
+    display: flex;
+    justify-content: space-evenly;
+    width: 40%;
+  }
+  .table-description {
+    font-family: $primary-font;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    background: wheat;
+    height: 60%;
+    width: 100%;
+  }
+  .empty-cart {
+    font-family: $primary-font;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    background: wheat;
+    height: 60%;
+    width: 100%;
+  }
+}
+#flush-btns {
+  @apply inline-flex
+    items-center
+    justify-center
+    px-5
+    py-3
+    text-sm
+    rounded-full
+    font-extrabold
+    transition
+    border-2
+    border-red-600
+    bg-red-600
+    text-white
+
+    hover:bg-white
+    hover:border-red-400
+    hover:text-red-400
+    
+    disabled:bg-gray-100
+    disabled:text-gray-400
+    disabled:border-gray-100
+    focus-visible:outline
+    focus-visible:outline-4
+    focus-visible:outline-red-400;
+}

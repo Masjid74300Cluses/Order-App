@@ -11,7 +11,7 @@ const ProductCard = ({ product, onAdd, link }) => {
     onAdd();
   };
 
-  console.log(product);
+  // console.log(product);
 
   if (product.type === "z-sauce") {
     return product?.title
