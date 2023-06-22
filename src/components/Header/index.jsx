@@ -15,7 +15,7 @@ function Header() {
   return (
     <main className={classes.header}>
       <div className={classes.headerContent}>
-        <h1 className={classes.title}>Kermesse de la fête de l Aid</h1>
+        <h1 className={classes.title}>Kermesse de la fête de l'Aid</h1>
       </div>
     </main>
   );
