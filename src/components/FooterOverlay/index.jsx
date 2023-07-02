@@ -17,14 +17,17 @@ const FooterOverlay = ({ expanded }) => {
   };
 
   return (
-    <div className={classes.footerOverlay}>
+      <>
+        <div></div>
+      </>
+    /*<div className={classes.footerOverlay}>
       <div className={classes.btns}>
         <button onClick={() => setInternExpanded(!internExpanded)}>change</button>
         <button onClick={() => setInternExpanded(!internExpanded)}>change</button>
         <button onClick={() => setInternExpanded(!internExpanded)}>change</button>
         <button onClick={() => setInternExpanded(!internExpanded)}>change</button>
       </div>
-    </div>
+    </div>*/
   );
 };
 

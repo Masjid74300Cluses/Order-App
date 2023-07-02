@@ -29,3 +29,5 @@ export const getProductById = async (id) => {
 
   return productsRows[0];
 };
+
+

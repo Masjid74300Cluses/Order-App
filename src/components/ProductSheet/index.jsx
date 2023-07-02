@@ -3,12 +3,14 @@ import { useEffect, useState } from "react";
 import { useCart } from "@/providers/CartProvider";
 import Button from "../Button";
 import { PRODUCT_SHEET } from "./constants";
+import Image from "next/image";
+import styles from "./ProductSheet.module.scss";
 
 const ProductSheet = ({ product, sauces }) => {
   const { addItem } = useCart();
   const [selectedSauces, setSelectedSauces] = useState([]);
   const [withoutSauce, setWithoutSauce] = useState(false);
-  const [disabled, setDisabled] = useState(true);
+  const [disabled, setDisabled] = useState(false);
 
   useEffect(() => {
     if (withoutSauce) {
@@ -55,9 +57,15 @@ const ProductSheet = ({ product, sauces }) => {
 
   return (
     <div>
-      <h1>Product {product?.id}</h1>
+      <Image id="product"
+             src={`/images/${product.name}.png`}
+             alt="Picture of the product"
+             width={400}
+             height={400}
+             className={styles.image}
+      />
       <p>{product?.name}</p>
-      <p>{product?.price} €</p>
+      <p>{(product?.price / 100).toFixed(2)} €</p>
       <p>{product?.description}</p>
       {sauces?.map((sauce) => (
         <div key={sauce.id}>
