@@ -1,7 +1,6 @@
 "use client";
 
 import styles from "./Header.module.scss";
-import { useCart } from "@/providers/CartProvider";
 
 function Header() {
   const classes = {
@@ -10,7 +9,7 @@ function Header() {
     title: styles["header__title"],
   };
 
-  const { cart, getTotalPrice } = useCart();
+
 
   return (
     <main className={classes.header}>
