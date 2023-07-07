@@ -9,8 +9,6 @@ import { useState } from "react";
 const FooterOverlay = ({ expanded, tableId }) => {
   const [internExpanded, setInternExpanded] = useState(expanded);
 
-  console.log("I'm here", tableId);
-
   const classes = {
     footerOverlay: cn(styles["footer-overlay"], {
       [styles["expanded"]]: internExpanded,

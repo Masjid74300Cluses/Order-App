@@ -1,5 +1,4 @@
 import FooterOverlay from "@/components/FooterOverlay";
-import Input from "@/components/Input/index"
 import ProductsList from "@/components/ProductsList";
 import { getProducts } from "@/utils/products";
 
@@ -14,7 +13,6 @@ const Page = async ({ params }) => {
 
   return (
     <div>
-      <Input />
       <ProductsList
         products={products}
         tableId={params.tableId}

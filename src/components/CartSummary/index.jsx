@@ -16,7 +16,7 @@ const CartSummary = ({ tableId }) => {
 
   return (
     <div className="container-cart">
-      {cart.length ? (
+      {cart?.length ? (
         <div className="table-description">
           <h1>Article(s) pour la table {tableId}</h1>
           <div> {cart?.length} articles</div>
