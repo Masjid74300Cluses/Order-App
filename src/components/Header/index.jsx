@@ -5,7 +5,8 @@ import { useCart } from "@/providers/CartProvider";
 import Link from "next/link";
 
 function Header() {
-  const classes = {
+    const { cart, getTotalPrice, clearCart, addItem, removeItem, countQuantity, updateCart } = useCart();
+    const classes = {
     header: styles.header,
     headerContent: styles["header__content"],
     title: styles["header__title"],
@@ -31,9 +32,14 @@ function Header() {
                     <Link href="/tables/[tableId]/panier" as={`/tables/${tableId}/panier`}>
                         <div className="w-auto relative">
                           <div className="absloute rounded-full bg-green-600 justify-center items-center shadow-sm text-white text-center">
-                            <div className="-mt-3">
-                              <span className="text-xs">{cart?.length}</span>
-                            </div>
+                              {!cart ?
+                                  <div className="-mt-3">
+                                  </div>
+                                  :
+                                  <div className="-mt-3">
+                                      <span className="text-xs">{cart?.length}</span>
+                                  </div>
+                              }
                           </div>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
                                  stroke="currentColor" className="w-6 h-6">
