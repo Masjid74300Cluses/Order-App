@@ -12,7 +12,7 @@ const ProductSheet = ({ product, sauces }) => {
   const { addItem } = useCart();
   const [selectedSauces, setSelectedSauces] = useState([]);
   const [withoutSauce, setWithoutSauce] = useState(false);
-  const [disabled, setDisabled] = useState(true);
+  const [disabled, setDisabled] = useState(false);
 
   useEffect(() => {
     if (withoutSauce) {
@@ -59,15 +59,14 @@ const ProductSheet = ({ product, sauces }) => {
 
   return (
 
+
     <div className={styles["product-sheet"]}>
       <Image src={`/images/${product.name}.png`} alt="Picture of the product" width={200}
         height={200} />
       <article className={styles.details}>
-
         <h1 className={styles["product-title"]}>{product?.name}</h1>
         <p>{product?.price / 100} €</p>
       </article>
-
       {sauces?.map((sauce) => (
         <div key={sauce.id}>
           <input

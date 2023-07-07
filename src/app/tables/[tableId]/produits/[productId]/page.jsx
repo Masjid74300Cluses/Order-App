@@ -17,7 +17,6 @@ const getData = async (productId) => {
 
 const ProductPage = async ({ params: { tableId, productId } }) => {
   const { product } = await getData(productId);
-
   return (
     <div>
       <Link href="/tables/[tableId]" as={`/tables/${tableId}`}>

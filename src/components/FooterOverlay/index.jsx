@@ -22,7 +22,6 @@ const FooterOverlay = ({ expanded, tableId }) => {
   return (
     <div className={classes.footerOverlay}>
       <div className={classes.panier}>
-
         <Link href="/tables/[tableId]/panier" as={`/tables/${tableId}/panier`}>
           <div>
             <p>Panier table {tableId}</p>
@@ -32,7 +31,6 @@ const FooterOverlay = ({ expanded, tableId }) => {
             </ul>
           </div>
         </Link>
-
       </div>
     </div>
   );
