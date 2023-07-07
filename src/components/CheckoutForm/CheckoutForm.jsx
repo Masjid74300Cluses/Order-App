@@ -6,6 +6,8 @@ import {
     useStripe,
     useElements
 } from "@stripe/react-stripe-js";
+import * as CONSTANTS from "../../utils/constants"
+import Button from "@/components/Button";
 
 export default function CheckoutForm() {
     const stripe = useStripe();
@@ -61,8 +63,8 @@ export default function CheckoutForm() {
             elements,
             confirmParams: {
                 // Make sure to change this to your payment completion page
-                return_url: "https://4ab4-2a01-cb1e-4e-a9af-94e7-f8d9-4bdc-8c81.ngrok-free.app/payment/success/",
-            },
+                return_url: `${CONSTANTS.URL_NGROK}/payment/success/`,
+            }
         });
 
         // This point will only be reached if there is an immediate error when
@@ -92,7 +94,7 @@ export default function CheckoutForm() {
             <PaymentElement id="payment-element" options={paymentElementOptions} />
             <button disabled={isLoading || !stripe || !elements} id="submit">
         <span id="button-text">
-          {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
+            {isLoading ? <div className="spinner" id="spinner"></div> : <Button>Valider</Button>}
         </span>
             </button>
             {/* Show any error or success messages */}

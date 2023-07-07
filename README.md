@@ -54,4 +54,5 @@ Les contributions à ce projet sont les bienvenues. Si vous souhaitez contribuer
 7. Poussez vos modifications en utilisant la commande `git push origin <branch-name>`.
 
 8. Créez une Pull Request en utilisant l'interface GitHub.
+9. ![alt text](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRx_Wes5gHvyJRnooboklj-igWPKTx4xspmTg&usqp=CAU)
 

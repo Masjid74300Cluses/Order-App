@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&family=Poppins:wght@500&display=swap");
+
+$primary-font: "Poppins", sans-serif;
+$second-font: "Open Sans", sans-serif;
+
+#input-name {
+  @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500;
+  margin-right: 1rem;
+}
+
+#formulaire {
+  @apply py-2;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: fit-content;
+}
+.welcome {
+  padding: 0 1rem;
+  font-family: $primary-font;
+  font-size: 1.2rem;
+  color: white;
+  transition: all linear 0.3s;
+  &:hover {
+    color: black;
+    font-size: 1.5rem;
+  }
+}

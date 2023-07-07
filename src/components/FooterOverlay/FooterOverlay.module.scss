@@ -1,12 +1,20 @@
 .footer-overlay {
   @apply fixed
-    left-0
+    right-0
     bottom-0
-    h-16
-    w-full
-   bg-white;
+    rounded-s-md
+    h-20
+    w-32
+   bg-green-400;
+  transition: all linear 0.3s;
+  &:hover {
+    background-color: #ffffffb2;
+    border: 1px solid black;
+    box-sizing: border-box;
+  }
 }
-.btns {
-  display: flex;
-  justify-content: space-evenly;
+.panier {
+  @apply flex
+  justify-center
+  align-middle;
 }

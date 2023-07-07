@@ -1,5 +1,6 @@
 import './home.scss'
 
+import Link from 'next/link'
 import React from 'react'
 
 export default function Home() {
@@ -9,7 +10,7 @@ export default function Home() {
             <p className='texte'>
                 Commandez en toute simplicité pour vos événements spéciaux avec <strong>Order App Aid</strong> : la solution rapide et pratique pour satisfaire tous les appétits, en un simple flash de QR code.
             </p>
-            <a id='link' href="about_us">About Us</a>
+            <Link id='link' href="about_us">About Us</Link>
         </main>
     )
 }

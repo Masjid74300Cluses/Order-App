@@ -9,18 +9,18 @@ export default function Generator() {
         values.push(lien);
     }
 
-    return <div>
+    return <div className="flex flex-wrap ">
         {values.map((link, index) => (
-            <QRCode className="py-5"
-                size={350}
+            <QRCode className="py-5 px-4"
+                size={300}
                 key={index}
                 style={{
-                    height: "auto", maxWidth: "100%", width: "100%"
+                    height: "auto", maxWidth: "33%", width: "33%"
                 }}
                 value={link}
                 viewBox={`0 0 256 256`}
-                bgColor={"#0c793e"}
-                fgColor={'#FFFF'}
+                bgColor={"white"}
+                fgColor={'black'}
                 title={"Table" + " " + (index + 1)}
             />
         ))}

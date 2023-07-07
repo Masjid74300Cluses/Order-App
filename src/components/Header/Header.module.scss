@@ -17,8 +17,9 @@ $second-font: "Open Sans", sans-serif;
 
 .header__title {
   @apply font-heading
-    text-3xl
+    text-xl
     text-gray-800
       font-extrabold;
+  font-size: 2rem;
   font-family: $primary-font;
 }
