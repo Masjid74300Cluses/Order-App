@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
-import { toast } from "react-toastify";
+import { cssTransition, toast } from "react-toastify";
 
 const CartContext = createContext();
 
@@ -36,10 +36,10 @@ export const CartProvider = ({ children }) => {
 
   const addItem = (item) => {
     console.log("item", item);
-    toast.info("🦄 Wow so easy!", {
+    toast.success("🍟🥤🍲 Bien joué!!! C'est ajouté!", {
       position: "top-right",
       closeOnClick: true,
-      theme: "light",
+      theme: "dark",
     });
     if (cart && cart.length > 0) {
       const indexProduct = cart.findIndex((p) => p.id === item.id);
