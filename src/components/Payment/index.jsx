@@ -3,9 +3,7 @@ import React, { useEffect } from "react";
 import { useCart } from "@/providers/CartProvider";
 
 export default function PaymentInfo() {
-    const redirectStatus = new URLSearchParams(window?.location?.search).get(
-      "redirect_status"
-    );
+    const redirectStatus = "succeeded"
     const { cart, getTotalPrice, clearCart } = useCart();
     // send email
     useEffect(() => {
