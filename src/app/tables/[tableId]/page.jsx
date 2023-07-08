@@ -1,23 +1,33 @@
 import FooterOverlay from "@/components/FooterOverlay";
 import ProductsList from "@/components/ProductsList";
-import { getProducts } from "@/utils/products";
+import { getStandsList } from "@/utils/products";
 
 const getData = async () => {
-  const products = await getProducts();
+  const stands = await getStandsList();
 
-  return { products };
+  return { stands };
 };
 
 const Page = async ({ params }) => {
-  const { products } = await getData();
+  const { stands } = await getData();
 
   return (
     <div>
-      <ProductsList
-        products={products}
-        tableId={params.tableId}
-      />
-      <FooterOverlay tableId={params.tableId} />
+      <div className="bg-white w-full ">
+        <h1>Table {params.tableId}</h1>
+      </div>
+
+      {stands.map((stand) => (
+        <div key={stand.id}>
+          <div className="bg-white w-full">
+            <h2 className="text-2xl bold">{stand.name}</h2>
+          </div>
+          <ProductsList
+            products={stand.productsList}
+            tableId={params.tableId}
+          />
+        </div>
+      ))}
     </div>
   );
 };
