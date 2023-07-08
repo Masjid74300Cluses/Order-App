@@ -3,6 +3,13 @@
 $primary-font: "Poppins", sans-serif;
 $second-font: "Open Sans", sans-serif;
 
+.header {
+  @apply sticky
+    top-0
+    z-50
+    bg-white;
+}
+
 .header__content {
   @apply h-24
     flex
@@ -11,8 +18,7 @@ $second-font: "Open Sans", sans-serif;
     justify-between
     py-4
     border-gray-300
-    border-b-2
-    mb-8;
+    border-b-2;
 }
 
 .header__title {

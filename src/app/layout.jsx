@@ -1,13 +1,19 @@
 import "./globals.scss";
 
+import "react-toastify/dist/ReactToastify.css";
+// import { Drawer } from "@mui/material";
+import { ToastContainer } from "react-toastify";
 import { CartProvider } from "@/providers/CartProvider";
+import Drawer from "@/components/Drawer";
+import { DrawerProvider } from "@/providers/DrawerProvider";
 import FooterOverlay from "@/components/FooterOverlay";
 import Header from "@/components/Header";
 import StyledJsx from "@/components/StyledJsx";
 
 export const metadata = {
-  title: "Kermesse de la fête de l'Aid",
-  description: "Web App pour faciliter les évenements avec prise de commande à table et QR Code",
+  title: "Kermesse de l'Aid",
+  description:
+    "Web App pour faciliter les évenements avec prise de commande à table et QR Code",
 };
 
 export default function RootLayout({ children }) {
@@ -16,8 +22,14 @@ export default function RootLayout({ children }) {
       <StyledJsx />
       <body>
         <CartProvider>
-          <Header />
-          <div className="container">{children}</div>
+          <DrawerProvider>
+            <Header />
+            <div className="container">
+              <main>{children}</main>
+              <ToastContainer />
+              <Drawer />
+            </div>
+          </DrawerProvider>
         </CartProvider>
       </body>
     </html>

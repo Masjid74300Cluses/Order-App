@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 const CartContext = createContext();
 
@@ -15,12 +16,17 @@ export const useCart = () => {
 };
 
 export const CartProvider = ({ children }) => {
-  const storedCart =
-    typeof window !== "undefined"
-      ? JSON.parse(localStorage?.getItem("order-app-cart"))
-      : [];
+  const [cart, setCart] = useState([]);
 
-  const [cart, setCart] = useState(storedCart);
+  useEffect(() => {
+    // Try to load the cart from localStorage after the component mounts
+    const storedCart =
+      typeof window !== "undefined"
+        ? JSON.parse(localStorage?.getItem("order-app-cart"))
+        : [];
+
+    setCart(storedCart);
+  }, []);
 
   useEffect(() => {
     // Save the cart to localStorage whenever it changes
@@ -29,20 +35,25 @@ export const CartProvider = ({ children }) => {
   }, [cart]);
 
   const addItem = (item) => {
+    console.log("item", item);
+    toast.info("🦄 Wow so easy!", {
+      position: "top-right",
+      closeOnClick: true,
+      theme: "light",
+    });
     if (cart && cart.length > 0) {
       const indexProduct = cart.findIndex((p) => p.id === item.id);
-      if (indexProduct === -1){
-        item.quantity = 1
-        setCart((prev) => !prev ? [item] : [...prev, item]);
-      } else
-      {
+      if (indexProduct === -1) {
+        item.quantity = 1;
+        setCart((prev) => (!prev ? [item] : [...prev, item]));
+      } else {
         const product = cart[indexProduct];
-        product.quantity = !product.quantity ? 1 : (product.quantity + 1)
-        cart[indexProduct] = {...product};
+        product.quantity = !product.quantity ? 1 : product.quantity + 1;
+        cart[indexProduct] = { ...product };
         setCart(cart);
       }
     } else {
-      item.quantity = 1
+      item.quantity = 1;
       setCart([item]);
     }
   };
@@ -57,22 +68,30 @@ export const CartProvider = ({ children }) => {
   };
 
   const getTotalPrice = () => {
-    return cart?.reduce((acc, item) => acc + ((item.price / 100) * item.quantity), 0) || 0;
+    return (
+      cart?.reduce(
+        (acc, item) => acc + (item.price / 100) * item.quantity,
+        0
+      ) || 0
+    );
   };
 
-  const countQuantity = (item) => {
-    return cart?.reduce( (acc, item) => (acc[item.id] = (acc[item.id] || 0)+1, acc), {} )
-  }
   const updateCart = (newCart) => {
-    setCart(prevCart => ([...newCart]));
+    setCart((prevCart) => [...newCart]);
   };
 
   return (
     <CartContext.Provider
-      value={{ cart, addItem, removeItem, clearCart, getTotalPrice, countQuantity, updateCart }}
+      value={{
+        cart,
+        addItem,
+        removeItem,
+        clearCart,
+        getTotalPrice,
+        updateCart,
+      }}
     >
       {children}
     </CartContext.Provider>
   );
 };
-
