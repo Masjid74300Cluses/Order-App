@@ -1,7 +1,8 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
-import { cssTransition, toast } from "react-toastify";
+
+import { toast } from "react-toastify";
 
 const CartContext = createContext();
 
