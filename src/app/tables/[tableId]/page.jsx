@@ -14,7 +14,7 @@ const Page = async ({ params }) => {
   return (
     <div>
       <div className="bg-white w-full ">
-        <h1>Table {params.tableId}</h1>
+        <h1 className="text-green-500 hover:text-black transition-all duration-200 flex justify-center text-3xl font-bold py-2">Table {params.tableId}</h1>
       </div>
 
       {stands.map((stand) => (
