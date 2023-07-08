@@ -16,12 +16,17 @@ export const useCart = () => {
 };
 
 export const CartProvider = ({ children }) => {
-  const storedCart =
-    typeof window !== "undefined"
-      ? JSON.parse(localStorage?.getItem("order-app-cart"))
-      : [];
+  const [cart, setCart] = useState([]);
 
-  const [cart, setCart] = useState(storedCart);
+  useEffect(() => {
+    // Try to load the cart from localStorage after the component mounts
+    const storedCart =
+      typeof window !== "undefined"
+        ? JSON.parse(localStorage?.getItem("order-app-cart"))
+        : [];
+
+    setCart(storedCart);
+  }, []);
 
   useEffect(() => {
     // Save the cart to localStorage whenever it changes
@@ -71,12 +76,6 @@ export const CartProvider = ({ children }) => {
     );
   };
 
-  const countQuantity = (item) => {
-    return cart?.reduce(
-      (acc, item) => ((acc[item.id] = (acc[item.id] || 0) + 1), acc),
-      {}
-    );
-  };
   const updateCart = (newCart) => {
     setCart((prevCart) => [...newCart]);
   };
@@ -89,7 +88,6 @@ export const CartProvider = ({ children }) => {
         removeItem,
         clearCart,
         getTotalPrice,
-        countQuantity,
         updateCart,
       }}
     >
