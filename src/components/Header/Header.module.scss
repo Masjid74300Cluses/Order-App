@@ -4,28 +4,26 @@ $primary-font: "Poppins", sans-serif;
 $second-font: "Open Sans", sans-serif;
 
 .header {
-  @apply sticky
+  @apply box-border
+    sticky
     top-0
     z-50
-    bg-white;
-}
-
-.header__content {
-  @apply h-24
+    bg-white
     flex
     flex-row
     items-center
     justify-between
-    py-4
-    border-gray-300
-    border-b-2;
+    pt-2
+    px-2;
+}
+
+.header__content {
+  @apply h-24;
 }
 
 .header__title {
   @apply font-heading
     text-xl
-    text-gray-800
-      font-extrabold;
-  font-size: 2rem;
-  font-family: $primary-font;
+  text-gray-800
+    font-extrabold;
 }

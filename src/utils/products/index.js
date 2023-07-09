@@ -9,8 +9,6 @@ export const getProducts = async () => {
   `;
   client.release();
 
-  console.log("productsRows", productsRows[0]);
-
   const products = productsRows.map((row) => {
     row.price = parseFloat(row.price);
     return { ...row };
@@ -18,6 +16,7 @@ export const getProducts = async () => {
 
   return products;
 };
+
 export const getStandsList = async () => {
   const client = await db.connect();
 
@@ -36,29 +35,35 @@ export const getStandsList = async () => {
                 WHERE st.id = fi.stand_id
                 ),
                'available', fi.available,
-               'sauces', (
-                   SELECT json_agg(
-                       json_build_object(
-                           'id', s.id, 
-                           'name', s.name,
-                           'available', s.available
+               'sauces', COALESCE(
+                   (
+                       SELECT json_agg(
+                           json_build_object(
+                               'id', s.id, 
+                               'name', s.name,
+                               'available', s.available
+                           )
                        )
-                   )
-                   FROM food_items_sauces AS fis
-                   JOIN sauces AS s ON fis.sauce_id = s.id
-                   WHERE fis.food_item_id = fi.id
+                       FROM food_items_sauces AS fis
+                       JOIN sauces AS s ON fis.sauce_id = s.id
+                       WHERE fis.food_item_id = fi.id
+                   ),
+                   '[]'::json
                ),
-               'veggies', (
-                   SELECT json_agg(
-                       json_build_object(
-                           'id', v.id,
-                           'name', v.name,
-                           'available', v.available
+               'veggies', COALESCE(
+                   (
+                       SELECT json_agg(
+                           json_build_object(
+                               'id', v.id,
+                               'name', v.name,
+                               'available', v.available
+                           )
                        )
-                   )
-                   FROM food_items_veggies AS fiv
-                   JOIN veggies AS v ON fiv.veggie_id = v.id
-                   WHERE fiv.food_item_id = fi.id
+                       FROM food_items_veggies AS fiv
+                       JOIN veggies AS v ON fiv.veggie_id = v.id
+                       WHERE fiv.food_item_id = fi.id
+                   ),
+                   '[]'::json
                )
            )
        ) AS "productsList"

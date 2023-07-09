@@ -1,7 +1,6 @@
-//form component too choose from sauces (max 2) and veggies (max 3)
-// use material ui components
 import { useState } from "react";
 import { useCart } from "@/providers/CartProvider";
+import { useDrawer } from "@/providers/DrawerProvider";
 import {
   FormControl,
   FormLabel,
@@ -12,10 +11,13 @@ import {
 import Button from "@/components/Button";
 
 const VariantForm = ({ product }) => {
-  const { sauces, veggies } = product;
+  console.log("product", product);
+  const { sauces = [], veggies = [] } = product;
 
+  const { addItem } = useCart();
+  const { closeDrawer } = useDrawer();
   const [selectedSauces, setSelectedSauces] = useState([]);
-  const [selectedVeggies, setSelectedVeggies] = useState([...product.veggies]);
+  const [selectedVeggies, setSelectedVeggies] = useState([...veggies]);
 
   const handleSauceChange = (event, sauce) => {
     const { checked } = event.target;
@@ -38,61 +40,74 @@ const VariantForm = ({ product }) => {
   };
 
   const handleOnClick = () => {
-    console.log("selectedSauces", selectedSauces);
-    console.log("selectedVeggies", selectedVeggies);
+    closeDrawer();
+    const item = {
+      ...product,
+      sauces: selectedSauces,
+      veggies: selectedVeggies,
+    };
+    addItem(item);
   };
 
   return (
     <FormControl component="fieldset">
-      <FormLabel component="legend">Sauces</FormLabel>
-      <FormGroup>
-        {sauces.map((sauce) => {
-          const { id, name, available } = sauce;
-          const label = available
-            ? selectedSauces.length >= 2 &&
-              !selectedSauces.some((v) => v.id === id)
-              ? `${name} (2 sauces max.)`
-              : name
-            : `${name} (épuisé)`;
-          return (
-            <FormControlLabel
-              key={id}
-              control={
-                <Checkbox
-                  checked={selectedSauces.some((s) => s.id === id)}
-                  onChange={(event) => handleSauceChange(event, sauce)}
-                  disabled={
-                    selectedSauces.length >= 2 &&
-                    !selectedSauces.some((v) => v.id === id)
+      {sauces.length ? (
+        <>
+          <FormLabel component="legend">Sauces</FormLabel>
+          <FormGroup>
+            {sauces.map((sauce) => {
+              const { id, name, available } = sauce;
+              const label = available
+                ? selectedSauces.length >= 2 &&
+                  !selectedSauces.some((v) => v.id === id)
+                  ? `${name} (2 sauces max.)`
+                  : name
+                : `${name} (épuisé)`;
+              return (
+                <FormControlLabel
+                  key={id}
+                  control={
+                    <Checkbox
+                      checked={selectedSauces.some((s) => s.id === id)}
+                      onChange={(event) => handleSauceChange(event, sauce)}
+                      disabled={
+                        selectedSauces.length >= 2 &&
+                        !selectedSauces.some((v) => v.id === id)
+                      }
+                      name={name}
+                    />
                   }
-                  name={name}
+                  label={label}
                 />
-              }
-              label={label}
-            />
-          );
-        })}
-      </FormGroup>
-      <FormLabel component="legend">Veggies</FormLabel>
-      <FormGroup>
-        {veggies.map((veggie) => {
-          const { id, name, available } = veggie;
-          const label = available ? name : `${name} (épuisé)`;
-          return (
-            <FormControlLabel
-              key={id}
-              control={
-                <Checkbox
-                  checked={selectedVeggies.some((v) => v.id === id)}
-                  onChange={(event) => handleVeggieChange(event, veggie)}
-                  name={name}
+              );
+            })}
+          </FormGroup>
+        </>
+      ) : null}
+      {veggies.length ? (
+        <>
+          <FormLabel component="legend">Veggies</FormLabel>
+          <FormGroup>
+            {veggies.map((veggie) => {
+              const { id, name, available } = veggie;
+              const label = available ? name : `${name} (épuisé)`;
+              return (
+                <FormControlLabel
+                  key={id}
+                  control={
+                    <Checkbox
+                      checked={selectedVeggies.some((v) => v.id === id)}
+                      onChange={(event) => handleVeggieChange(event, veggie)}
+                      name={name}
+                    />
+                  }
+                  label={label}
                 />
-              }
-              label={label}
-            />
-          );
-        })}
-      </FormGroup>
+              );
+            })}
+          </FormGroup>
+        </>
+      ) : null}
       <Button onClick={handleOnClick}> Ajouter au panier</Button>
     </FormControl>
   );

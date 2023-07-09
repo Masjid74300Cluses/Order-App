@@ -36,31 +36,81 @@ export const CartProvider = ({ children }) => {
   }, [cart]);
 
   const addItem = (item) => {
-    console.log("item", item);
-    toast.success("🍟🥤🍲 Bien joué!!! C'est ajouté!", {
-      position: "top-right",
-      closeOnClick: true,
-      theme: "dark",
-    });
-    if (cart && cart.length > 0) {
-      const indexProduct = cart.findIndex((p) => p.id === item.id);
-      if (indexProduct === -1) {
-        item.quantity = 1;
-        setCart((prev) => (!prev ? [item] : [...prev, item]));
-      } else {
-        const product = cart[indexProduct];
-        product.quantity = !product.quantity ? 1 : product.quantity + 1;
-        cart[indexProduct] = { ...product };
-        setCart(cart);
-      }
-    } else {
-      item.quantity = 1;
-      setCart([item]);
+    try {
+      setCart((prev) => {
+        const itemHasVariants = item.sauces?.length || item.veggies?.length;
+        if (itemHasVariants) {
+          return [
+            ...prev,
+            {
+              ...item,
+              id: generateUniqueId(),
+              productId: item.id,
+              quantity: 1,
+            },
+          ];
+        }
+
+        const itemAlreadyInCart = prev?.find((i) => i.id === item.id);
+
+        if (itemAlreadyInCart) {
+        console.log("item", item);
+          return prev.map((i) =>
+            i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
+          );
+        }
+
+        return [...prev, { ...item, quantity: 1 }];
+      });
+
+      toast.info(`${item.name} ajouté(e) au panier`, {
+        position: "top-right",
+        closeOnClick: true,
+        theme: "light",
+        icon: "🔥",
+      });
+    } catch (error) {
+      toast.error("Erreur durant l'ajout au panier", {
+        position: "top-right",
+        closeOnClick: true,
+        theme: "light",
+        icon: "❌",
+      });
     }
   };
 
-  const removeItem = (id) => {
-    setCart((prev) => prev.filter((item) => item.id !== id));
+  const removeItem = (itemId) => {
+    setCart((prevCart) => {
+      const updatedCart = [...prevCart];
+      const itemIndex = updatedCart.findIndex(
+        (cartItem) => cartItem.id === itemId
+      );
+      if (itemIndex !== -1) {
+        const item = updatedCart[itemIndex];
+        if (item.quantity === 1) {
+          updatedCart.splice(itemIndex, 1);
+          console.log("Item removed from cart:", item);
+        } else {
+          item.quantity--;
+          console.log("Item quantity decremented:", item);
+        }
+      } else {
+        console.log("Item not found in cart");
+      }
+      return updatedCart;
+    });
+  };
+
+  const incrementItemQuantity = (itemId) => {
+    setCart((prevCart) => {
+      const updatedCart = prevCart.map((cartItem) => {
+        if (cartItem.id === itemId) {
+          return { ...cartItem, quantity: cartItem.quantity + 1 };
+        }
+        return cartItem;
+      });
+      return updatedCart;
+    });
   };
 
   const clearCart = () => {
@@ -69,16 +119,46 @@ export const CartProvider = ({ children }) => {
   };
 
   const getTotalPrice = () => {
-    return (
-      cart?.reduce(
-        (acc, item) => acc + (item.price / 100) * item.quantity,
-        0
-      ) || 0
-    );
+    let totalPrice = 0;
+
+    console.log("cart", cart);
+    cart.forEach(({ price, quantity, name }) => {
+      console.log("price", price + name);
+      console.log("quantity", quantity + name);
+      totalPrice += price * (quantity || 1);
+    });
+    return totalPrice;
   };
 
   const updateCart = (newCart) => {
     setCart((prevCart) => [...newCart]);
+  };
+
+  const getStandsWithProducts = () => {
+    const standsMap = cart?.reduce((map, item) => {
+      const { id, name, stand, price, available, sauces, veggies, quantity } =
+        item;
+      if (!map.has(stand.id)) {
+        map.set(stand.id, {
+          id: stand.id,
+          name: stand.name,
+          products: [],
+        });
+      }
+      const standData = map.get(stand.id);
+      standData.products.push({
+        id,
+        name,
+        price,
+        available,
+        sauces,
+        veggies,
+        quantity,
+      });
+      return map;
+    }, new Map());
+
+    return Array.from(standsMap.values());
   };
 
   return (
@@ -90,9 +170,17 @@ export const CartProvider = ({ children }) => {
         clearCart,
         getTotalPrice,
         updateCart,
+        getStandsWithProducts,
       }}
     >
       {children}
     </CartContext.Provider>
   );
 };
+
+function generateUniqueId() {
+  const timestamp = Date.now().toString(36);
+  const randomNum = Math.random().toString(36).substr(2, 5);
+  const uniqueId = `${timestamp}-${randomNum}`;
+  return uniqueId;
+}

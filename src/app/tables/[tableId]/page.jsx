@@ -1,6 +1,7 @@
 import FooterOverlay from "@/components/FooterOverlay";
-import ProductsList from "@/components/ProductsList";
+import StandContent from "@/components/StandContent";
 import { getStandsList } from "@/utils/products";
+import styles from "./TablePage.module.scss";
 
 const getData = async () => {
   const stands = await getStandsList();
@@ -12,23 +13,15 @@ const Page = async ({ params }) => {
   const { stands } = await getData();
 
   return (
-    <div>
-      <div className="bg-white w-full ">
-        <h1 className="text-green-500 hover:text-black transition-all duration-200 flex justify-center text-3xl font-bold py-2">Table {params.tableId}</h1>
-      </div>
+    <>
+      <h1 className={styles.title}>Table {params.tableId}</h1>
 
-      {stands.map((stand) => (
-        <div key={stand.id}>
-          <div className="bg-white w-full">
-            <h2 className="text-2xl bold">{stand.name}</h2>
-          </div>
-          <ProductsList
-            products={stand.productsList}
-            tableId={params.tableId}
-          />
-        </div>
-      ))}
-    </div>
+      <div className={styles["stands-list"]}>
+        {stands.map((stand) => (
+          <StandContent stand={stand} key={stand.id}></StandContent>
+        ))}
+      </div>
+    </>
   );
 };
 

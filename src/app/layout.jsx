@@ -25,15 +25,9 @@ export default function RootLayout({ children }) {
         <CartProvider>
           <DrawerProvider>
             <Header />
-            <div className="container">
-              <main>{children}</main>
-              <ToastContainer
-                autoClose={1200}
-                hideProgressBar={true}
-                transition={Flip}
-              />
-              <Drawer />
-            </div>
+            <main>{children}</main>
+            <ToastContainer />
+            <Drawer />
           </DrawerProvider>
         </CartProvider>
       </body>
