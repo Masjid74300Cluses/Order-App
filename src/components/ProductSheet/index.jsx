@@ -61,7 +61,7 @@ const ProductSheet = ({ product, sauces }) => {
 
 
     <div className={styles["product-sheet"]}>
-      <Image src={`/images/${product.name}.png`} alt="Picture of the product" width={200}
+      <Image src={`/images/food-items/${product.name}.png`} alt="Picture of the product" width={200}
         height={200} />
       <article className={styles.details}>
         <h1 className={styles["product-title"]}>{product?.name}</h1>
