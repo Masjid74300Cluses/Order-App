@@ -16,7 +16,7 @@ import Input from "../Input";
 import React from "react";
 import { toast } from "react-toastify";
 
-export default function CheckoutForm() {
+export default function CheckoutForm({ tableId }) {
   const stripe = useStripe();
   const elements = useElements();
 
@@ -72,7 +72,7 @@ export default function CheckoutForm() {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: `${CONSTANTS.URL_NGROK}/payment/success/`,
+        return_url: `${CONSTANTS.URL_NGROK}/tables/${tableId}/payment/success/`,
       },
     });
 
