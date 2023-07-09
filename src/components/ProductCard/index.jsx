@@ -23,7 +23,7 @@ const ProductCard = ({ product, onAdd, link }) => {
       <div className={styles["image-container"]}>
         <Image
           id="product"
-          src={`/images/${product.name}.png`}
+          src={`/images/food-items/${product.name}.png`}
           alt="Picture of the product"
           width={imageWidth}
           height={imageHeight}
