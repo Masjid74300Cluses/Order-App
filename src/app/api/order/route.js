@@ -26,7 +26,7 @@ const printTicket = (commande) => {
   // Requête pour imprimer le ticket thermique
   return fetch("https://b7d456b380f1.ngrok.app/print", {
     method: "POST",
-    body: JSON.stringify({ title: "Envoie depuis prod", products: commande }),
+    body: JSON.stringify({ stands: commande }),
     headers: {
       "Content-Type": "application/json",
       Authorization: "Basic " + btoa("admin:admin"),
@@ -39,12 +39,8 @@ export async function POST(req, res) {
   // save order  get number send email
   /*const responseEmail = await sendConfirmationEmail(formData);
     const responseStore = await storeOrderData(formData);*/
-  const products = [
-    { name: "Produit 1", price: 100, quantity: 2 },
-    { name: "Produit 2", price: 150, quantity: 1 },
-    { name: "Produit 3", price: 80, quantity: 3 },
-  ];
-  const responsePrint = await printTicket(products);
+
+  const responsePrint = await printTicket(items);
   return NextResponse.json({
     items: JSON.stringify(items),
   });

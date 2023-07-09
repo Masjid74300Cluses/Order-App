@@ -64,5 +64,4 @@ export default function PaymentInfo() {
       </div>
     </div>
   );
-  // return <div>Payment</div>;
 }
