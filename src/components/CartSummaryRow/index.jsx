@@ -26,7 +26,10 @@ const CartSummaryRow = ({ product, updateCartTotal }) => {
           alt={name}
         />
         <div className="flex flex-col im">
-          <span className="text-sm"> {product.name}</span>
+          <span className="text-sm">
+            {" "}
+            {product.name} {quantity > 1 ? `x ${quantity}` : null}
+          </span>
           {sauces?.length ? (
             <span className="text-xs">
               Sauce(s)
