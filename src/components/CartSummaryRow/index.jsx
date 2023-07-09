@@ -17,7 +17,7 @@ const CartSummaryRow = ({ product, updateCartTotal }) => {
   };
 
   return (
-    <div className="flex justify-between items-center border-b-2 px-3">
+    <div className="flex justify-between items-center p-3">
       <div className="flex items-center gap-1">
         <Image
           src={`/images/${product.name}.png`}
@@ -57,7 +57,7 @@ const CartSummaryRow = ({ product, updateCartTotal }) => {
       </div>
 
       {quantity ? (
-        <div>
+        <div className="text-lg flex gap-2">
           <span>{formatPrice(price * quantity)}</span>
           <button onClick={handleRemoveClick}>🗑️</button>
         </div>

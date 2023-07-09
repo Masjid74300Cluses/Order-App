@@ -10,10 +10,10 @@ import CartSummaryRow from "@/components/CartSummaryRow";
 import Link from "next/link";
 import { useCart } from "@/providers/CartProvider";
 import { useDrawer } from "@/providers/DrawerProvider";
-const CartSummary = ({ tableId }) => {
+const CartSummary = () => {
   const { cart, getTotalPrice, clearCart, getStandsWithProducts } = useCart();
 
-  const { closeDrawer } = useDrawer();
+  const { closeDrawer, tableId } = useDrawer();
 
   const handleOnClear = () => {
     clearCart();
@@ -21,16 +21,16 @@ const CartSummary = ({ tableId }) => {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col px-3 pt-6 pb-8">
       {cart?.length ? (
         <>
-          <h4>Panier</h4>
+          <h4 className="text-lg font-bold">Votre Panier</h4>
           <ul>
             {getStandsWithProducts().map((stand) => {
               const { id, name, products } = stand;
               return (
-                <li key={id}>
-                  <h5>Stand {name}</h5>
+                <li key={id} className="mt-5 border-b-2">
+                  <h5 className="bg-green-200 pl-2 rounded">Stand {name}</h5>
                   <ul>
                     {products.map((product) => {
                       return (
@@ -44,11 +44,17 @@ const CartSummary = ({ tableId }) => {
               );
             })}
           </ul>
-          <div>Total: {formatPrice(getTotalPrice())}</div>
-          <Button>Régler ma commande</Button>
+          <div className="text-right">
+            Total: {formatPrice(getTotalPrice())}
+          </div>
+          <Link href={`/tables/${tableId}/checkout`}>
+            <Button className="w-full mt-4">Régler ma commande</Button>
+          </Link>
         </>
       ) : (
-        "panierVide"
+        <div>
+          <h4 className="text-center">Panier Vide</h4>
+        </div>
       )}
     </div>
   );

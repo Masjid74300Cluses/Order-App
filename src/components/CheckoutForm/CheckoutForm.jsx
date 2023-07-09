@@ -10,6 +10,8 @@ import {
 } from "@stripe/react-stripe-js";
 
 import Button from "@/components/Button";
+import { useCart } from "@/providers/CartProvider";
+import formatPrice from "@/utils/formatPrice";
 import Input from "../Input";
 import React from "react";
 import { toast } from "react-toastify";
@@ -17,6 +19,8 @@ import { toast } from "react-toastify";
 export default function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
+
+  const { cart, getTotalPrice } = useCart();
 
   const [email, setEmail] = React.useState("");
   const [message, setMessage] = React.useState(null);
@@ -99,12 +103,18 @@ export default function CheckoutForm() {
           onChange={(e) => setEmail(e.target.value)}
         />
         <PaymentElement id="payment-element" options={paymentElementOptions} />
-        <button className="py-2 w-full flex justify-end" disabled={isLoading || !stripe || !elements} id="submit">
-          <span id="button-text">
+        <button
+          className="py-2 w-full flex justify-end"
+          disabled={isLoading || !stripe || !elements}
+          id="submit"
+        >
+          <span id="button-text" className="w-full">
             {isLoading ? (
               <div className="spinner" id="spinner"></div>
             ) : (
-              <Button>Valider</Button>
+              <Button className="w-full">
+                Payer {formatPrice(getTotalPrice())}{" "}
+              </Button>
             )}
           </span>
         </button>

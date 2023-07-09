@@ -3,6 +3,7 @@
 import Button from "../Button";
 import Image from "next/image";
 import Link from "next/link";
+import formatPrice from "@/utils/formatPrice";
 import styles from "./ProductCard.module.scss";
 
 const ProductCard = ({ product, onAdd, link }) => {
@@ -32,7 +33,7 @@ const ProductCard = ({ product, onAdd, link }) => {
       <div className={styles.footer}>
         <div className={styles.description}>
           <h3>{product.name}</h3>
-          <p>{product.price / 100} €</p>
+          <p>{formatPrice(product.price)}</p>
         </div>
 
         <button className={styles.cta} onClick={onAdd}>

@@ -54,7 +54,6 @@ export const CartProvider = ({ children }) => {
         const itemAlreadyInCart = prev?.find((i) => i.id === item.id);
 
         if (itemAlreadyInCart) {
-        console.log("item", item);
           return prev.map((i) =>
             i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
           );
@@ -89,13 +88,9 @@ export const CartProvider = ({ children }) => {
         const item = updatedCart[itemIndex];
         if (item.quantity === 1) {
           updatedCart.splice(itemIndex, 1);
-          console.log("Item removed from cart:", item);
         } else {
           item.quantity--;
-          console.log("Item quantity decremented:", item);
         }
-      } else {
-        console.log("Item not found in cart");
       }
       return updatedCart;
     });
@@ -121,10 +116,7 @@ export const CartProvider = ({ children }) => {
   const getTotalPrice = () => {
     let totalPrice = 0;
 
-    console.log("cart", cart);
     cart.forEach(({ price, quantity, name }) => {
-      console.log("price", price + name);
-      console.log("quantity", quantity + name);
       totalPrice += price * (quantity || 1);
     });
     return totalPrice;

@@ -11,7 +11,6 @@ import {
 import Button from "@/components/Button";
 
 const VariantForm = ({ product }) => {
-  console.log("product", product);
   const { sauces = [], veggies = [] } = product;
 
   const { addItem } = useCart();
@@ -50,9 +49,9 @@ const VariantForm = ({ product }) => {
   };
 
   return (
-    <FormControl component="fieldset">
+    <FormControl component="fieldset" className="pb-8 pt-6 px-3 w-full">
       {sauces.length ? (
-        <>
+        <div>
           <FormLabel component="legend">Sauces</FormLabel>
           <FormGroup>
             {sauces.map((sauce) => {
@@ -82,10 +81,10 @@ const VariantForm = ({ product }) => {
               );
             })}
           </FormGroup>
-        </>
+        </div>
       ) : null}
       {veggies.length ? (
-        <>
+        <div>
           <FormLabel component="legend">Veggies</FormLabel>
           <FormGroup>
             {veggies.map((veggie) => {
@@ -106,9 +105,11 @@ const VariantForm = ({ product }) => {
               );
             })}
           </FormGroup>
-        </>
+        </div>
       ) : null}
-      <Button onClick={handleOnClick}> Ajouter au panier</Button>
+      <Button onClick={handleOnClick} className="mt-3">
+        Ajouter au panier
+      </Button>
     </FormControl>
   );
 };
