@@ -12,16 +12,10 @@ const ProductCard = ({ product, onAdd, link }) => {
 
   // ** ------- Pour les dimensions de l'image  **
   const aspectRatio = 4 / 3.5;
-  // const containerWidth = 800;
-  // const imageWidth = containerWidth;
-  // const imageHeight = containerWidth / aspectRatio;
-  const imageWidth = 200;
-  const imageHeight = imageWidth * aspectRatio;
+  const containerWidth = 250;
+  const imageWidth = containerWidth;
+  const imageHeight = containerWidth / aspectRatio;
   // ** ------- ** //
-
-  if (product.type === "z-sauce") {
-    return product?.title;
-  }
 
   return (
     <div className={styles["product-card"]}>

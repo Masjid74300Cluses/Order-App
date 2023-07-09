@@ -18,8 +18,7 @@ const Page = async ({ params }) => {
 
       <div className={styles["stands-list"]}>
         {stands.map((stand) => (
-          <StandContent stand={stand} key={stand.id}>
-          </StandContent>
+          <StandContent stand={stand} key={stand.id}></StandContent>
         ))}
       </div>
     </>

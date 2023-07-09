@@ -1,8 +1,9 @@
 import "./globals.scss";
-
 import "react-toastify/dist/ReactToastify.css";
+
 // import { Drawer } from "@mui/material";
-import { ToastContainer } from "react-toastify";
+import { Flip, ToastContainer } from "react-toastify";
+
 import { CartProvider } from "@/providers/CartProvider";
 import Drawer from "@/components/Drawer";
 import { DrawerProvider } from "@/providers/DrawerProvider";
