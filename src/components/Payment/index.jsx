@@ -8,6 +8,8 @@ export default function PaymentInfo() {
 
   console.log("cart in payment", cart);
 
+  const items = getStandsWithProducts();
+
   // send email
   useEffect(() => {
     async function fetchData() {
@@ -18,7 +20,7 @@ export default function PaymentInfo() {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ items: getStandsWithProducts() }),
+        body: JSON.stringify({ items }),
       });
       const data = res.json();
       data.then((val) => {
@@ -27,8 +29,10 @@ export default function PaymentInfo() {
       });
       // ...
     }
-    fetchData();
-  }, []);
+    if (items.length > 0) {
+      fetchData();
+    }
+  }, [items, clearCart]);
 
   return (
     <div>
