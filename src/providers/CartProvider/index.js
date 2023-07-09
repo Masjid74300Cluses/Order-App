@@ -59,7 +59,10 @@ export const CartProvider = ({ children }) => {
           );
         }
 
-        return [...prev, { ...item, quantity: 1 }];
+        return [
+          ...prev,
+          { ...item, id: generateUniqueId(), productId: item.id, quantity: 1 },
+        ];
       });
 
       toast.info(`${item.name} ajouté(e) au panier`, {
