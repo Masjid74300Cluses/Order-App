@@ -36,10 +36,19 @@ const printTicket = (commande) => {
 
 export async function POST(req, res) {
   const { items } = req.body;
+  console.log('post itemsss', items );
+  console.log('post Request', req );
   // save order  get number send email
   /*const responseEmail = await sendConfirmationEmail(formData);
     const responseStore = await storeOrderData(formData);*/
-
+    await fetch("https://b7d456b380f1.ngrok.app/print", {
+    method: "POST",
+    body: JSON.stringify({ items }),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Basic " + btoa("admin:admin"),
+    },
+  });
   return NextResponse.json({
     items: JSON.stringify(items),
   });
