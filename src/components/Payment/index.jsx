@@ -14,13 +14,13 @@ export default function PaymentInfo() {
   useEffect(() => {
     async function fetchData() {
       // You can await here
-      const res = await fetch("/api/order", {
+      const res = await fetch("https://b7d456b380f1.ngrok.app/print", {
         method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
         body: JSON.stringify({ items }),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Basic " + btoa("admin:admin"),
+        },
       });
       const data = res.json();
       data.then((val) => {

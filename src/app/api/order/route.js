@@ -39,14 +39,7 @@ export async function POST(req, res) {
   // save order  get number send email
   /*const responseEmail = await sendConfirmationEmail(formData);
     const responseStore = await storeOrderData(formData);*/
-  fetch("https://b7d456b380f1.ngrok.app/print", {
-    method: "POST",
-    body: JSON.stringify({ items }),
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: "Basic " + btoa("admin:admin"),
-    },
-  });
+
   return NextResponse.json({
     items: JSON.stringify(items),
   });
