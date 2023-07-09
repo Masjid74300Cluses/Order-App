@@ -17,7 +17,7 @@ const CartSummaryRow = ({ product, updateCartTotal }) => {
   };
 
   return (
-    <div className="flex justify-between items-center border-b-2 px-3">
+    <div className="flex justify-between items-center p-3">
       <div className="flex items-center gap-1">
         <Image
           src={`/images/${product.name}.png`}
@@ -26,7 +26,10 @@ const CartSummaryRow = ({ product, updateCartTotal }) => {
           alt={name}
         />
         <div className="flex flex-col im">
-          <span className="text-sm"> {product.name}</span>
+          <span className="text-sm">
+            {" "}
+            {product.name} {quantity > 1 ? `x ${quantity}` : null}
+          </span>
           {sauces?.length ? (
             <span className="text-xs">
               Sauce(s)
@@ -54,7 +57,7 @@ const CartSummaryRow = ({ product, updateCartTotal }) => {
       </div>
 
       {quantity ? (
-        <div>
+        <div className="text-lg flex gap-2">
           <span>{formatPrice(price * quantity)}</span>
           <button onClick={handleRemoveClick}>🗑️</button>
         </div>

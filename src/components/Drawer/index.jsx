@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useDrawer } from "@/providers/DrawerProvider";
 import { Drawer as MaterialDrawer } from "@mui/material";
 
-const Drawer = () => {
+const Drawer = ({ tableId }) => {
   const { isOpen, closeDrawer, drawerContent } = useDrawer();
 
   // to block the scroll when the drawer is open
@@ -30,7 +30,15 @@ const Drawer = () => {
         keepMounted: true, // Better open performance on mobile.
       }}
     >
-      {drawerContent}
+      <div>
+        <button
+          className="absolute top-2 right-2 text-2xl bg-slate-600 text-white rounded-full w-8 h-8 flex items-center justify-center"
+          onClick={() => closeDrawer()}
+        >
+          X
+        </button>
+        {drawerContent}
+      </div>
     </MaterialDrawer>
   );
 };

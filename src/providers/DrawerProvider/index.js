@@ -11,7 +11,7 @@ export const useDrawer = () => {
   return context;
 };
 
-export const DrawerProvider = ({ children }) => {
+export const DrawerProvider = ({ tableId, children }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [content, setContent] = useState(null);
 
@@ -27,7 +27,13 @@ export const DrawerProvider = ({ children }) => {
 
   return (
     <DrawerContext.Provider
-      value={{ isOpen, openDrawer, closeDrawer, drawerContent: content }}
+      value={{
+        isOpen,
+        openDrawer,
+        closeDrawer,
+        drawerContent: content,
+        tableId,
+      }}
     >
       {children}
     </DrawerContext.Provider>

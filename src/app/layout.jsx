@@ -23,12 +23,14 @@ export default function RootLayout({ children }) {
       <StyledJsx />
       <body>
         <CartProvider>
-          <DrawerProvider>
-            <Header />
-            <main>{children}</main>
-            <ToastContainer />
-            <Drawer />
-          </DrawerProvider>
+          {/* <DrawerProvider> */}
+          {/* <Header /> */}
+          {/* <main> */}
+          {children}
+          {/* </main> */}
+          <ToastContainer />
+          {/* <Drawer /> */}
+          {/* </DrawerProvider> */}
         </CartProvider>
       </body>
     </html>
