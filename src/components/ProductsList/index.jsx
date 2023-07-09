@@ -7,7 +7,7 @@ import VariantForm from "@/components/VariantForm";
 
 import styles from "./ProductsList.module.scss";
 
-const ProductsList = ({ products = [], tableId }) => {
+const ProductsList = ({ products = [], className }) => {
   const { addItem } = useCart();
   const { openDrawer } = useDrawer();
 
@@ -16,8 +16,7 @@ const ProductsList = ({ products = [], tableId }) => {
       product.sauces?.length > 0 || product.veggies?.length > 0;
 
     if (!productHasVariants) {
-      const { id, name, stand } = product;
-      addItem({ id, name, stand });
+      addItem(product);
       return;
     }
 
@@ -25,14 +24,10 @@ const ProductsList = ({ products = [], tableId }) => {
   };
 
   return (
-    <ul className={styles["products-list"]}>
+    <ul className={`${styles["products-list"]} ${className}`}>
       {products?.map((product) => (
         <li key={product.id}>
-          <ProductCard
-            product={product}
-            link={`/tables/${tableId}/produits/${product.id}`}
-            onAdd={handleOnAdd(product)}
-          />
+          <ProductCard product={product} onAdd={handleOnAdd(product)} />
         </li>
       ))}
     </ul>

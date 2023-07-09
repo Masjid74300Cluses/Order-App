@@ -1,0 +1,19 @@
+.title {
+  @apply bg-white
+    w-full
+    sticky
+    z-50
+    top-16
+    text-lg
+    pl-2;
+}
+
+.stands-list {
+  @apply flex
+    flex-col
+    gap-4
+
+    sm:px-8
+    md:px-16
+    lg:px-32;
+}

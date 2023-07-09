@@ -7,8 +7,12 @@ $second-font: "Open Sans", sans-serif;
     grid-cols-1
     gap-4
     sm:grid-cols-2
-    md:grid-cols-3;
-  font-family: $second-font;
+    md:grid-cols-3
+
+    px-4
+    sm:px-8
+    md:px-16
+    lg:px-32;
 }
 .table {
   font-family: $primary-font;

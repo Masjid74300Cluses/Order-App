@@ -42,7 +42,6 @@ export async function POST(req, res) {
     const responsePrint = await printTicket(formData);*/
 
 
-    console.log('reqqqqq', req)
     return NextResponse.json({
         items: JSON.stringify(items)
     });

@@ -1,0 +1,15 @@
+.title-container {
+  @apply w-full
+    flex
+    justify-center
+    items-center
+    text-2xl
+    font-bold
+    capitalize
+    h-16
+    bg-green-200;
+}
+
+.products-list {
+  @apply mt-2;
+}
