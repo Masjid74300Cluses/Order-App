@@ -47,7 +47,7 @@ export default function App({ params }) {
       </h2>
       {clientSecret && (
         <Elements options={options} stripe={stripePromise}>
-          <CheckoutForm />
+          <CheckoutForm tableId={params.tableId} />
         </Elements>
       )}
     </div>
